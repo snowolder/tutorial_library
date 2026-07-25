@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://rd3qmdgh2qef"]
+
+[ext_resource type="Script" uid="uid://b2vtq8w46cgsf" path="res://breakout_serie/breakout_part4/level_scene.gd" id="1_j2453"]
+[ext_resource type="PackedScene" uid="uid://d0mq43dt7qauy" path="res://breakout_serie/breakout_part4/paddle.tscn" id="2_ov72u"]
+[ext_resource type="PackedScene" uid="uid://d1upt4dj3isd" path="res://breakout_serie/breakout_part4/ball.tscn" id="3_cnd58"]
+[ext_resource type="PackedScene" uid="uid://nhlcmhjqliq7" path="res://breakout_serie/breakout_part4/level_generator.tscn" id="4_disr2"]
+[ext_resource type="PackedScene" uid="uid://be44kfti57b4e" path="res://breakout_serie/breakout_part4/stone.tscn" id="5_weph3"]
+[ext_resource type="PackedScene" uid="uid://8l42h836p3i0" path="res://breakout_serie/breakout_part4/ui.tscn" id="6_rwyrp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lwxgr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8wodn"]
+
+[node name="LevelScene" type="Node2D" unique_id=590527968]
+script = ExtResource("1_j2453")
+
+[node name="Paddle" parent="." unique_id=687564880 instance=ExtResource("2_ov72u")]
+position = Vector2(617, 597)
+
+[node name="Ball" parent="." unique_id=96263272 instance=ExtResource("3_cnd58")]
+position = Vector2(672, 445)
+
+[node name="Border" type="StaticBody2D" parent="." unique_id=397234241]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border" unique_id=1912845920]
+position = Vector2(585, 0)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_lwxgr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border" unique_id=255331262]
+position = Vector2(0, 371)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_lwxgr")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border" unique_id=1081789522]
+position = Vector2(1282, 360)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_lwxgr")
+
+[node name="LevelGenerator" parent="." unique_id=775434143 instance=ExtResource("4_disr2")]
+color = Color(0.2848643, 0.62970406, 0, 1)
+
+[node name="@StaticBody2D@54862" parent="LevelGenerator" unique_id=1823041010 instance=ExtResource("5_weph3")]
+position = Vector2(600, 100)
+
+[node name="@StaticBody2D@54863" parent="LevelGenerator" unique_id=1919533440 instance=ExtResource("5_weph3")]
+position = Vector2(600, 125)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1097800083]
+
+[node name="Ui" parent="CanvasLayer" unique_id=1400320752 instance=ExtResource("6_rwyrp")]
+
+[node name="outArea" type="Area2D" parent="." unique_id=1297767955]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outArea" unique_id=649435194]
+position = Vector2(677, 719)
+shape = SubResource("WorldBoundaryShape2D_8wodn")
+
+[node name="ballSpawnMarker" type="Marker2D" parent="." unique_id=1054591951]
+position = Vector2(671, 386)
+
+[connection signal="body_entered" from="outArea" to="." method="_on_out_area_body_entered"]

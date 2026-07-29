@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://nexxky3aiwtq"]
+
+[ext_resource type="Script" uid="uid://d1r7i84m852gq" path="res://scene.gd" id="1_3e7fx"]
+[ext_resource type="PackedScene" uid="uid://cal53gbed2hrs" path="res://collection/world_environment.tscn" id="2_wb1nb"]
+[ext_resource type="Texture2D" uid="uid://2p6a0hw0jqgg" path="res://assets/prototype/Dark/texture_01.png" id="3_apgic"]
+[ext_resource type="Texture2D" uid="uid://dihcw4uqc43n1" path="res://assets/prototype/Green/texture_01.png" id="4_xegfe"]
+[ext_resource type="PackedScene" uid="uid://covvip4d5d3u4" path="res://collection/2026/chop_tree/tree.tscn" id="5_vspls"]
+[ext_resource type="PackedScene" uid="uid://g5pnp4kgiph5" path="res://player.tscn" id="6_40ror"]
+[ext_resource type="PackedScene" uid="uid://dje2ksdn488mb" path="res://grid.tscn" id="7_8q2va"]
+[ext_resource type="PackedScene" uid="uid://064rp6nm3jai" path="res://ground.tscn" id="8_dpryq"]
+[ext_resource type="Script" uid="uid://cjxtngd1cpqkk" path="res://ground.gd" id="9_gkfck"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni31j"]
+albedo_texture = ExtResource("3_apgic")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nxogm"]
+size = Vector2(200, 200)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3253y"]
+points = PackedVector3Array(-100, 0, -100, -100, 0, 100, 100, 0, -100, 100, 0, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlvrw"]
+albedo_texture = ExtResource("4_xegfe")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m7jmp"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y2354"]
+points = PackedVector3Array(5, 5, 5, 5, 5, -5, -5, 5, 5, 5, -5, 5, 5, -5, -5, -5, 5, -5, -5, -5, 5, -5, -5, -5)
+
+[node name="Scene" type="Node3D" unique_id=50537297]
+script = ExtResource("1_3e7fx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=74530962]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" parent="." unique_id=1066633600 instance=ExtResource("2_wb1nb")]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=402463697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002986908, 0.04170227, 0.021970749)
+material_override = SubResource("StandardMaterial3D_ni31j")
+mesh = SubResource("PlaneMesh_nxogm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=380379441]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=1203664378]
+shape = SubResource("ConvexPolygonShape3D_3253y")
+
+[node name="Block" type="MeshInstance3D" parent="." unique_id=1790528403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.97248, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_xlvrw")
+mesh = SubResource("BoxMesh_m7jmp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Block" unique_id=156244303]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Block/StaticBody3D" unique_id=799634029]
+shape = SubResource("ConvexPolygonShape3D_y2354")
+
+[node name="Tree" parent="." unique_id=1976808159 instance=ExtResource("5_vspls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 41.602493)
+
+[node name="CharacterBody3D" parent="." unique_id=1857933427 instance=ExtResource("6_40ror")]
+
+[node name="Grid" parent="." unique_id=15684402 instance=ExtResource("7_8q2va")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 2.5)
+
+[node name="@StaticBody3D@30408" type="StaticBody3D" parent="Grid" unique_id=600037325 instance=ExtResource("8_dpryq")]
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30409" type="StaticBody3D" parent="Grid" unique_id=1120696650 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30410" type="StaticBody3D" parent="Grid" unique_id=491195977 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30411" type="StaticBody3D" parent="Grid" unique_id=381007028 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30412" type="StaticBody3D" parent="Grid" unique_id=943097520 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30413" type="StaticBody3D" parent="Grid" unique_id=898619373 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30414" type="StaticBody3D" parent="Grid" unique_id=1556952714 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30415" type="StaticBody3D" parent="Grid" unique_id=602570150 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30416" type="StaticBody3D" parent="Grid" unique_id=2097020772 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30417" type="StaticBody3D" parent="Grid" unique_id=114008562 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30418" type="StaticBody3D" parent="Grid" unique_id=1430645937 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30419" type="StaticBody3D" parent="Grid" unique_id=1718378521 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30420" type="StaticBody3D" parent="Grid" unique_id=760808579 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30421" type="StaticBody3D" parent="Grid" unique_id=1248493497 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30422" type="StaticBody3D" parent="Grid" unique_id=881369255 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30423" type="StaticBody3D" parent="Grid" unique_id=937234287 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30424" type="StaticBody3D" parent="Grid" unique_id=1919692372 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30425" type="StaticBody3D" parent="Grid" unique_id=1709431776 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30426" type="StaticBody3D" parent="Grid" unique_id=1434903500 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30427" type="StaticBody3D" parent="Grid" unique_id=937664356 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30428" type="StaticBody3D" parent="Grid" unique_id=359050972 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30429" type="StaticBody3D" parent="Grid" unique_id=1005846240 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30430" type="StaticBody3D" parent="Grid" unique_id=175555917 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30431" type="StaticBody3D" parent="Grid" unique_id=1699295477 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+script = ExtResource("9_gkfck")
+
+[node name="@StaticBody3D@30432" type="StaticBody3D" parent="Grid" unique_id=247334394 instance=ExtResource("8_dpryq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+script = ExtResource("9_gkfck")

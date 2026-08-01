@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://mlsvmgl6qww0"]
+
+[ext_resource type="Script" uid="uid://cf8wvpikeqh18" path="res://grid_like_movement/spinning_tiles.gd" id="1_2gp2j"]
+[ext_resource type="Texture2D" uid="uid://utynywl45nbj" path="res://grid_like_movement/Interior general.PNG" id="1_tixpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tixpc"]
+size = Vector2(32, 32)
+
+[node name="SpinningTiles" type="Area2D" unique_id=562257491]
+script = ExtResource("1_2gp2j")
+
+[node name="sprites" type="Node2D" parent="." unique_id=1767645500]
+
+[node name="upTile" type="Sprite2D" parent="sprites" unique_id=439425379]
+texture = ExtResource("1_tixpc")
+region_enabled = true
+region_rect = Rect2(160, 2848, 32, 32)
+
+[node name="downTile" type="Sprite2D" parent="sprites" unique_id=611965250]
+texture = ExtResource("1_tixpc")
+region_enabled = true
+region_rect = Rect2(160, 2880, 32, 32)
+
+[node name="leftTile" type="Sprite2D" parent="sprites" unique_id=30307502]
+texture = ExtResource("1_tixpc")
+region_enabled = true
+region_rect = Rect2(192, 2848, 32, 32)
+
+[node name="rightTile" type="Sprite2D" parent="sprites" unique_id=1912945256]
+texture = ExtResource("1_tixpc")
+region_enabled = true
+region_rect = Rect2(192, 2880, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=52960086]
+shape = SubResource("RectangleShape2D_tixpc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

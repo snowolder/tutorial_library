@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PLANT_RESOURCE" format=3 uid="uid://u2sid5wvfay0"]
+
+[ext_resource type="Script" uid="uid://b6m6fof3ixnnj" path="res://farming_serie/farming_part_5/item_resource/plants/plant_resource.gd" id="1_bv0f1"]
+[ext_resource type="PackedScene" uid="uid://dksptpqa3hqm5" path="res://assets/carrot/carrot_0.glb" id="2_ym44e"]
+[ext_resource type="PackedScene" uid="uid://dtosbc60s3to6" path="res://assets/carrot/carrot_1.glb" id="3_uahxb"]
+[ext_resource type="PackedScene" uid="uid://wvjrfav7ww03" path="res://assets/carrot/carrot_2.glb" id="4_fuvpe"]
+[ext_resource type="PackedScene" uid="uid://dfkik8qdr4clb" path="res://assets/carrot/carrot_3.glb" id="5_ty6p0"]
+[ext_resource type="PackedScene" uid="uid://dv5wfc7sixfa6" path="res://assets/carrot/carrot_4.glb" id="6_enxrb"]
+
+[resource]
+script = ExtResource("1_bv0f1")
+stageScenes = Array[PackedScene]([ExtResource("2_ym44e"), ExtResource("3_uahxb"), ExtResource("4_fuvpe"), ExtResource("5_ty6p0"), ExtResource("6_enxrb")])
+daysPerStage = Array[int]([3, 2, 2, 2])
+metadata/_custom_type_script = "uid://bndnfubap2w16"

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c54rki5dbyeu5"]
+
+[ext_resource type="Script" uid="uid://br3mpuldp21mm" path="res://multiple_dice_roll/scene.gd" id="1_nxogm"]
+[ext_resource type="PackedScene" uid="uid://ptk2r87e2e6t" path="res://multiple_dice_roll/dice.tscn" id="1_ulcgi"]
+
+[node name="Scene" type="Node2D" unique_id=1953423966]
+script = ExtResource("1_nxogm")
+
+[node name="Dice" parent="." unique_id=1202888834 instance=ExtResource("1_ulcgi")]
+position = Vector2(213, 224)
+
+[node name="Dice2" parent="." unique_id=543536438 instance=ExtResource("1_ulcgi")]
+position = Vector2(593, 228)
+
+[node name="Dice3" parent="." unique_id=1051605684 instance=ExtResource("1_ulcgi")]
+position = Vector2(1065, 227)
+
+[node name="Dice4" parent="." unique_id=250649121 instance=ExtResource("1_ulcgi")]
+position = Vector2(385, 536)
+
+[node name="Dice5" parent="." unique_id=965477001 instance=ExtResource("1_ulcgi")]
+position = Vector2(846, 517)
+
+[node name="Label" type="Label" parent="." unique_id=762456435]
+offset_left = 551.0
+offset_top = 334.0
+offset_right = 643.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1

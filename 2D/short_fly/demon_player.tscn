@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://buynvha2if0"]
+
+[ext_resource type="Script" uid="uid://c2lh7rh8n40uo" path="res://short_fly/demon_player.gd" id="1_8ojit"]
+[ext_resource type="Texture2D" uid="uid://p7a2jgk1avmq" path="res://assets/Flying Demon 2D Pixel Art/WALKING.png" id="2_8ojit"]
+[ext_resource type="Texture2D" uid="uid://d4edel0du0dkn" path="res://assets/Flying Demon 2D Pixel Art/FLYING.png" id="2_p2udy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0wu7"]
+atlas = ExtResource("2_p2udy")
+region = Rect2(0, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f74f"]
+atlas = ExtResource("2_p2udy")
+region = Rect2(81, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06w23"]
+atlas = ExtResource("2_p2udy")
+region = Rect2(162, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1tt7"]
+atlas = ExtResource("2_p2udy")
+region = Rect2(243, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pap4y"]
+atlas = ExtResource("2_8ojit")
+region = Rect2(0, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ein1h"]
+atlas = ExtResource("2_8ojit")
+region = Rect2(0, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3or47"]
+atlas = ExtResource("2_8ojit")
+region = Rect2(81, 0, 81, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1tt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0wu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f74f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06w23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1tt7")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pap4y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ein1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3or47")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pap4y"]
+size = Vector2(34, 36)
+
+[node name="Player" type="CharacterBody2D" unique_id=98984088]
+script = ExtResource("1_8ojit")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=235689472]
+position = Vector2(6, -4)
+sprite_frames = SubResource("SpriteFrames_w1tt7")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1723714978]
+position = Vector2(-3, 8)
+shape = SubResource("RectangleShape2D_pap4y")
+
+[node name="flyTimer" type="Timer" parent="." unique_id=343198266]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="flyTimer" to="." method="_on_fly_timer_timeout"]

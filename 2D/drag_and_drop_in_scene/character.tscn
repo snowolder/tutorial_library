@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bw81lijbdgjs7"]
+
+[ext_resource type="PackedScene" uid="uid://15xb8nynkowe" path="res://collection/fox_animated_sprite.tscn" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://oftmtthe2uwo" path="res://drag_and_drop/character.gd" id="1_pjt0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjt0s"]
+size = Vector2(16, 20)
+
+[node name="Character" type="CharacterBody2D" unique_id=120552921]
+script = ExtResource("1_pjt0s")
+
+[node name="foxAnimatedSprite" parent="." unique_id=1334737953 instance=ExtResource("1_glpr6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1192678514]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_pjt0s")

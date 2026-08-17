@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b4dhx0xfnglwc"]
+
+[ext_resource type="Script" uid="uid://c0j3cek3neojy" path="res://fog_of_war/fog_of_war.gd" id="1_vm7a7"]
+
+[node name="FogOfWar" type="Sprite2D" unique_id=1939672796]
+script = ExtResource("1_vm7a7")

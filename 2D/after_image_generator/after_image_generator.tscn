@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ds8sdnoiua7bt"]
+
+[ext_resource type="Script" uid="uid://c8fdvdl16yilt" path="res://after_image_generator/after_image_generator.gd" id="1_1gvqa"]
+
+[node name="AfterImageGenerator" type="Node2D" unique_id=460190503]
+script = ExtResource("1_1gvqa")
+
+[node name="Timer" type="Timer" parent="." unique_id=427682915]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

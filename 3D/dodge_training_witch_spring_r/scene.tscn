@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://de5w0xg0wx5xv"]
+
+[ext_resource type="Shader" uid="uid://bhsge57t1dm0d" path="res://collection/2026/shader_sky/sky_shader.gdshader" id="1_u3cyc"]
+[ext_resource type="Texture2D" uid="uid://2p6a0hw0jqgg" path="res://assets/prototype/Dark/texture_01.png" id="2_m7jmp"]
+[ext_resource type="PackedScene" uid="uid://cci14vnoosh1d" path="res://dodge_training_witch_spring_r/dodge_dummy.tscn" id="4_u3cyc"]
+[ext_resource type="PackedScene" uid="uid://dkp8srjc18xpu" path="res://dodge_training_witch_spring_r/player.tscn" id="4_y2354"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ni31j"]
+shader = ExtResource("1_u3cyc")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_xlvrw"]
+sky_material = SubResource("ShaderMaterial_ni31j")
+
+[sub_resource type="Environment" id="Environment_73fnb"]
+background_mode = 2
+sky = SubResource("Sky_xlvrw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni31j"]
+albedo_texture = ExtResource("2_m7jmp")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nxogm"]
+size = Vector2(30, 30)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3253y"]
+points = PackedVector3Array(-100, 0, -100, -100, 0, 100, 100, 0, -100, 100, 0, 100)
+
+[node name="Scene" type="Node3D" unique_id=50537297]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1568389915]
+environment = SubResource("Environment_73fnb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=74530962]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=402463697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002986908, 0.04170227, 0.021970749)
+material_override = SubResource("StandardMaterial3D_ni31j")
+mesh = SubResource("PlaneMesh_nxogm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=380379441]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=1203664378]
+shape = SubResource("ConvexPolygonShape3D_3253y")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=484902522]
+transform = Transform3D(-0.50000006, -0.4330127, 0.74999994, 0, 0.8660254, 0.5, -0.8660254, 0.25000003, -0.43301275, 5.25, 5.25, -3.1499999)
+
+[node name="Player" parent="." unique_id=1857933427 instance=ExtResource("4_y2354")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.415, 0, 1.3769087e-08)
+
+[node name="DodgeDummy" parent="." unique_id=936483778 instance=ExtResource("4_u3cyc")]
+transform = Transform3D(1.299038, 0, -0.75, 0, 1.5, 0, 0.75, 0, 1.299038, 0, 0, 0)

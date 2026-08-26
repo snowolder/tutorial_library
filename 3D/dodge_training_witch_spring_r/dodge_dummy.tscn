@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cci14vnoosh1d"]
+
+[ext_resource type="Script" uid="uid://dig2owybgx4ej" path="res://dodge_training_witch_spring_r/dodge_dummy.gd" id="1_c3urn"]
+[ext_resource type="PackedScene" uid="uid://dv8xf8mlgggyn" path="res://dodge_training_witch_spring_r/dodge_dummy.glb" id="2_jsv44"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_52qdk"]
+radius = 0.315
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52qdk"]
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="Animation" id="Animation_4dim8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dodge_dummy:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a03rh"]
+resource_name = "start"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dodge_dummy:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c27g3"]
+_data = {
+&"RESET": SubResource("Animation_4dim8"),
+&"start": SubResource("Animation_a03rh")
+}
+
+[node name="DodgeDummy" type="Node3D" unique_id=936483778]
+script = ExtResource("1_c3urn")
+
+[node name="dodge_dummy" parent="." unique_id=793361617 instance=ExtResource("2_jsv44")]
+
+[node name="attackArea" type="Area3D" parent="dodge_dummy" unique_id=1451697005]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="dodge_dummy/attackArea" unique_id=754630807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.224889, 1.0881515, 0)
+shape = SubResource("SphereShape3D_52qdk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="dodge_dummy/attackArea" unique_id=1759422734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.218063, 1.0881515, 0)
+shape = SubResource("SphereShape3D_52qdk")
+
+[node name="endArea" type="Area3D" parent="." unique_id=1224000626]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="endArea" unique_id=1810043864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.155, 1.155, 0)
+shape = SubResource("BoxShape3D_52qdk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1045102165]
+libraries/ = SubResource("AnimationLibrary_c27g3")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=70471456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6239357, 0)
+billboard = 1
+font_size = 100
+outline_size = 40
+
+[connection signal="body_entered" from="dodge_dummy/attackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="area_entered" from="endArea" to="." method="_on_end_area_area_entered"]

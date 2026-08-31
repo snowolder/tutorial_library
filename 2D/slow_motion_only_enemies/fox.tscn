@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bu53jimdx8sny"]
+
+[ext_resource type="Script" uid="uid://cxix0nq6x06gg" path="res://slow_motion_only_enemies/fox.gd" id="1_kpck0"]
+[ext_resource type="PackedScene" uid="uid://15xb8nynkowe" path="res://collection/fox_animated_sprite.tscn" id="2_k0xb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpck0"]
+size = Vector2(13, 20)
+
+[node name="Fox" type="CharacterBody2D" unique_id=1180604489]
+script = ExtResource("1_kpck0")
+
+[node name="foxAnimatedSprite" parent="." unique_id=1334737953 instance=ExtResource("2_k0xb2")]
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005954922]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_kpck0")

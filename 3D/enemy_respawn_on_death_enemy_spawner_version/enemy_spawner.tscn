@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bphsefbposucv"]
+
+[ext_resource type="Script" uid="uid://djair0n7agj27" path="res://enemy_respawn_on_death_enemy_spawner_version/enemy_spawner.gd" id="1_ewhtn"]
+
+[node name="EnemySpawner" type="Node3D"]
+script = ExtResource("1_ewhtn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

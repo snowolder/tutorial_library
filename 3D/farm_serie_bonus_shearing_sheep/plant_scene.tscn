@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cfotlp0nk0dib"]
+
+[ext_resource type="Script" uid="uid://dkn61k1mro7t7" path="res://collection/farming_serie/current_state/plant_scene.gd" id="1_g7o3a"]
+
+[node name="PlantScene" type="Node3D" unique_id=1422399579]
+script = ExtResource("1_g7o3a")
+
+[node name="model" type="Node3D" parent="." unique_id=547290566]

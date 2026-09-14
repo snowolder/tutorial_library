@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cwwfkbgehojuq"]
+
+[ext_resource type="PackedScene" uid="uid://c473a4ktyk1hc" path="res://collection/farming_serie/current_state/soil_solo.glb" id="1_6xhay"]
+[ext_resource type="Script" uid="uid://d084qtgi2kt1c" path="res://collection/farming_serie/current_state/soil.gd" id="2_hp0vc"]
+
+[node name="Soil" unique_id=1178097335 instance=ExtResource("1_6xhay")]
+script = ExtResource("2_hp0vc")

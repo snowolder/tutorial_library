@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b88fpiee4x4ih"]
+
+[ext_resource type="PackedScene" uid="uid://dehvgn83h1ksy" path="res://sheep.glb" id="1_47xdr"]
+
+[sub_resource type="GDScript" id="GDScript_mllt3"]
+script/source = "extends CharacterBody3D
+
+@onready var head_wool: MeshInstance3D = $sheep/HeadWool
+@onready var wool: MeshInstance3D = $sheep/wool
+
+var toolUsable = true
+
+func tool_interaction(tool: ITEM_BAR_ITEM.ITEM_TYPES):
+	if not toolUsable or tool != ITEM_BAR_ITEM.ITEM_TYPES.SHEARER:
+		return
+		
+	toolUsable = false
+	head_wool.hide()
+	wool.hide()
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_52qdk"]
+radius = 0.640625
+height = 1.793457
+
+[node name="Sheep" type="CharacterBody3D" unique_id=1685583813]
+script = SubResource("GDScript_mllt3")
+
+[node name="sheep" parent="." unique_id=457582177 instance=ExtResource("1_47xdr")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1076129624]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5173389, 0.05883789)
+shape = SubResource("CapsuleShape3D_52qdk")
+
+[editable path="sheep"]

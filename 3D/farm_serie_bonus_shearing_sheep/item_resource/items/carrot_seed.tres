@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ITEM_BAR_ITEM" format=3 uid="uid://4j5a4d0ysen3"]
+
+[ext_resource type="Resource" uid="uid://tn3p5h3k8hfy" path="res://farm_serie_bonus_shearing_sheep/item_resource/plants/carrot_resource.tres" id="1_lvjh7"]
+[ext_resource type="Script" uid="uid://bp8f1gfkadh77" path="res://farm_serie_bonus_shearing_sheep/item_resource/items/item_resource.gd" id="2_su2nc"]
+[ext_resource type="Texture2D" uid="uid://c6h0j4rte5o8w" path="res://collection/farming_serie/current_state/icons/seed_pack.png" id="3_p8fok"]
+
+[resource]
+script = ExtResource("2_su2nc")
+itemID = 2
+texture = ExtResource("3_p8fok")
+itemType = 2
+plantResource = ExtResource("1_lvjh7")
+metadata/_custom_type_script = "uid://qcybgkl4l5g6"

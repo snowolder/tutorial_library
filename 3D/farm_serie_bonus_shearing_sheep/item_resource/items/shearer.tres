@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ITEM_BAR_ITEM" format=3 uid="uid://dvvwse2htagt1"]
+
+[ext_resource type="Script" uid="uid://bp8f1gfkadh77" path="res://farm_serie_bonus_shearing_sheep/item_resource/items/item_resource.gd" id="1_xm1nd"]
+[ext_resource type="Texture2D" uid="uid://ci1xe0kco13i6" path="res://assets/icons/shears.png" id="2_o8nmd"]
+
+[resource]
+script = ExtResource("1_xm1nd")
+itemID = 3
+texture = ExtResource("2_o8nmd")
+itemType = 3
+metadata/_custom_type_script = "uid://bp8f1gfkadh77"

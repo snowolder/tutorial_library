@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ct0eirbm5csjb"]
+
+[ext_resource type="PackedScene" uid="uid://i2uaeaulb1ss" path="res://assets/dungeon/box_small.gltf" id="1_g2tbl"]
+[ext_resource type="Script" uid="uid://dfk53dgy2jrs1" path="res://pick_up_put_down_objects/box.gd" id="1_oq5cr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52qdk"]
+
+[node name="Box" type="StaticBody3D" unique_id=819804072]
+script = ExtResource("1_oq5cr")
+
+[node name="box_small2" parent="." unique_id=1368276696 instance=ExtResource("1_g2tbl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1284965452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5007247, 0)
+shape = SubResource("BoxShape3D_52qdk")

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bu3agfgarwoh4"]
+
+[ext_resource type="Script" uid="uid://bs1ikmsfxyyk2" path="res://area_slow_down/fox.gd" id="1_kpck0"]
+[ext_resource type="PackedScene" uid="uid://15xb8nynkowe" path="res://collection/fox_animated_sprite.tscn" id="2_k0xb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpck0"]
+size = Vector2(13, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52qdk"]
+radius = 50.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpck0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.095, 0.19000004, 0.38, 0.2784314)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[node name="Fox" type="CharacterBody2D" unique_id=1180604489]
+script = ExtResource("1_kpck0")
+
+[node name="foxAnimatedSprite" parent="." unique_id=1334737953 instance=ExtResource("2_k0xb2")]
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005954922]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_kpck0")
+
+[node name="slowMotionArea" type="Area2D" parent="." unique_id=613735727]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slowMotionArea" unique_id=80711526]
+shape = SubResource("CircleShape2D_52qdk")
+
+[node name="Panel" type="Panel" parent="slowMotionArea" unique_id=2009133371]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kpck0")
+
+[connection signal="body_entered" from="slowMotionArea" to="." method="_on_slow_motion_area_body_entered"]
+[connection signal="body_exited" from="slowMotionArea" to="." method="_on_slow_motion_area_body_exited"]

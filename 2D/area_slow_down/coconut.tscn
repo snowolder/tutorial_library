@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://q1syrkelwwj4"]
+
+[ext_resource type="Texture2D" uid="uid://eam1sasu5r1r" path="res://TinyTropicalTiles_Tileset.png" id="1_68kns"]
+[ext_resource type="Script" uid="uid://bwacu7doig716" path="res://area_slow_down/coconut.gd" id="1_gktd8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52qdk"]
+radius = 7.28011
+
+[node name="Coconut" type="CharacterBody2D" unique_id=702221277]
+script = ExtResource("1_gktd8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034442200]
+texture = ExtResource("1_68kns")
+region_enabled = true
+region_rect = Rect2(160, 48, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358990558]
+shape = SubResource("CircleShape2D_52qdk")
